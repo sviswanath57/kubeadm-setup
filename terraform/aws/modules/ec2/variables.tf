@@ -24,7 +24,7 @@ variable "key_name" {
 
 variable "security_group_ids" {
   type    = list(string)
-  default = []
+  default = ["sg-0a082b6ef7bd6d1e4"]
 }
 
 variable "instance_count" {
