@@ -12,6 +12,12 @@ variable "ami_id" {
   default = "ami-0735c191cf914754d"
 }
 
+variable "vpc_id" {
+  type    = string
+  default = "vpc-00452ad0c57f2f148"
+}
+
+
 variable "instance_type" {
   type    = string
   default = "t2.small"

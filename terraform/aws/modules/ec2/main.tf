@@ -1,7 +1,7 @@
 resource "aws_security_group" "instance-sg" {
   name        = "K8s Node SG"
   description = "SG for Kubeadm Nodes"
-
+  vpc_id = var.vpc_id.key
   dynamic "ingress" {
     for_each = toset(range(length(var.inbound_from_port)))
     content {
@@ -10,7 +10,7 @@ resource "aws_security_group" "instance-sg" {
       protocol    = var.inbound_protocol[ingress.key]
       cidr_blocks = [var.inbound_cidr[ingress.key]]
     }
-  }
+}
 
   dynamic "egress" {
     for_each = toset(range(length(var.outbound_from_port)))
@@ -22,6 +22,8 @@ resource "aws_security_group" "instance-sg" {
     }
   }
 }
+
+
 
 
 resource "aws_instance" "example" {
