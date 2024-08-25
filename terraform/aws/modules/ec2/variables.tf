@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
 }
 
 variable "instance_name" {
@@ -19,7 +19,7 @@ variable "instance_type" {
 
 variable "key_name" {
   type    = string
-  default = "techiescamp"
+  default = "devops-key"
 }
 
 variable "security_group_ids" {
@@ -34,7 +34,7 @@ variable "instance_count" {
 
 variable "subnet_ids" {
   type    = list(string)
-  default = ["subnet-058a7514ba8adbb07", "subnet-0dbcd1ac168414927", "subnet-032f5077729435858"]
+  default = ["subnet-0823786c144f61f53", "subnet-03d590e376679c7ad", "subnet-09b7dcc9a853086c3"]
 }
 
 variable "inbound_from_port" {
