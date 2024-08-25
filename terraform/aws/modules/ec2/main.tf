@@ -1,7 +1,7 @@
 resource "aws_security_group" "instance-sg" {
   name        = "K8s Node SG"
   description = "SG for Kubeadm Nodes"
-  vpc_id = var.vpc_id.key
+  vpc_id = var.vpc_id
   dynamic "ingress" {
     for_each = toset(range(length(var.inbound_from_port)))
     content {
