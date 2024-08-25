@@ -1,5 +1,5 @@
 resource "aws_security_group" "instance-sg" {
-  name        = "Ks Node SG"
+  name        = "K8s Node SG"
   description = "SG for Kubeadm Nodes"
 
   dynamic "ingress" {
@@ -34,7 +34,7 @@ resource "aws_instance" "example" {
 
   user_data = <<-EOF
     #cloud-config
-    hostname: ${count.index == 0 ? "controlplane" : "node0${count.index}"}
+    hostname: $"{count.index == 0 ? "controlplane" : "node0${count.index}"}"
   EOF
 
 tags = {
