@@ -292,8 +292,9 @@ version = 2
   gid = 0
   uid = 0
 
-sudo systemctl status containerd
-sudo systemctl restart containerd && systemctl status containerd
+sudo systemctl status containerd ; echo "Next containerd restart command running..."
+sudo systemctl restart containerd ; echo "Next containerd status command running..."
+sudo systemctl status containerd ; echo "Next command running..."
 
 
 sudo apt-get update -y
