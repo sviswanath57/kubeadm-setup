@@ -74,7 +74,14 @@ sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables ne
 modprobe br_netfilter
 sysctl -p /etc/sysctl.conf
 
+: ' 
 sudo vi /etc/containerd/config.toml
+
+To automatically add content to a file using vi in a script, it's more practical to use a command-line approach like echo or cat with redirection instead of manually opening vi, especially when running with sudo. This is because vi is an interactive text editor, and automating interactions with it is complex and generally not necessary for simple file edits.
+'
+sudo ex -s /etc/containerd/config.toml <<EOF
+\$a
+
 disabled_plugins = []
 imports = []
 oom_score = 0
@@ -291,6 +298,9 @@ version = 2
   address = ""
   gid = 0
   uid = 0
+.
+wq
+EOF '
 
 sudo systemctl status containerd ; echo "Next containerd restart command running..."
 sudo systemctl restart containerd ; echo "Next containerd status command running..."
@@ -317,11 +327,11 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config \
 
 export KUBECONFIG=/etc/kubernetes/admin.conf 
 #    or  #
-
+<<"COMMENT"
 export KUBECONFIG= $HOME/.kube/config # this will work if its have necessary permissions
 
 https://github.com/projectcalico/calico/blob/master/manifests/calico.yaml
-: '
+*/
 
 
 You should now deploy a pod network to the cluster.
@@ -332,5 +342,4 @@ Then you can join any number of worker nodes by running the following on each as
 
 sudo kubeadm join 10.0.1.95:6443 --token raal3p.bcdq3ae25nos3u4y \
         --discovery-token-ca-cert-hash sha256:69120173d43c99295cfffd1f939b60990e086b11f64a8e0e4478b6f63fa0fc18
-
-'
+COMMENT
