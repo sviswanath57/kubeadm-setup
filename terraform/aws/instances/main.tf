@@ -10,7 +10,7 @@ module "ec2_instance" {
   instance_type  = "t2.medium"
   key_name       = "devops-key"
   subnet_ids     = ["subnet-0823786c144f61f53", "subnet-03d590e376679c7ad", "subnet-09b7dcc9a853086c3"]
-  instance_count = 3
+  instance_count = 2
 
   inbound_from_port  = ["0", "6443", "22", "30000"]
   inbound_to_port    = ["65000", "6443", "22", "32768"]
